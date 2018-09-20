@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.sunshine.ForecastAdapter.ForecastAdapterOnClickHandler;
 import com.example.android.sunshine.data.SunshinePreferences;
@@ -37,6 +39,8 @@ import com.example.android.sunshine.utilities.NetworkUtils;
 import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
 
 import java.net.URL;
+
+import javax.xml.datatype.Duration;
 
 public class MainActivity extends AppCompatActivity implements ForecastAdapterOnClickHandler {
 
@@ -221,8 +225,12 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
             return true;
         }
 
-        // TODO (2) Launch the map when the map menu item is clicked
-
+        // COMPLETED (2) Launch the map when the map menu item is clicked
+        if (id == R.id.action_map) {
+            Toast
+                .makeText(this, "TODO: Something with a map here", Toast.LENGTH_SHORT)
+                .show();
+        }
         return super.onOptionsItemSelected(item);
     }
 }
