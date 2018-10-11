@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.d(TAG, "onCreate: registering preference changed listener");
 
         // COMPLETED (6) Register MainActivity as a OnSharedPreferenceChangedListener in onCreate
-        SharedPreferences sharedPreferences = getSharedPreferences(this.getPackageName(), MODE_PRIVATE);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -351,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onDestroy();
 
         // COMPLETED (8) Override onDestroy and unregister MainActivity as a SharedPreferenceChangedListener
-        SharedPreferences sharedPreferences = getSharedPreferences(this.getPackageName(), MODE_PRIVATE);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
