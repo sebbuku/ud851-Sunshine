@@ -139,7 +139,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
 
 //  COMPLETED (11) Create a new method that allows you to swap Cursors.
 //      COMPLETED (12) After the new Cursor is set, call notifyDataSetChanged
-    private void swapCursor(Cursor newCursor) {
+    public void swapCursor(Cursor newCursor) {
         mCursor = newCursor;
 
         notifyDataSetChanged();
