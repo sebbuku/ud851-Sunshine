@@ -18,6 +18,7 @@ package com.example.android.sunshine.data;
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -34,21 +35,35 @@ import android.support.annotation.NonNull;
  */
 public class WeatherProvider extends ContentProvider {
 
-//  TODO (5) Create static constant integer values named CODE_WEATHER & CODE_WEATHER_WITH_DATE to identify the URIs this ContentProvider can handle
+    //  COMPLETED (5) Create static constant integer values named CODE_WEATHER & CODE_WEATHER_WITH_DATE to identify the URIs this ContentProvider can handle
+    private static final int CODE_WEATHER = 765;
+    private static final int CODE_WEATHER_WITH_DATE = 338;
 
-//  TODO (7) Instantiate a static UriMatcher using the buildUriMatcher method
+//  COMPLETED (7) Instantiate a static UriMatcher using the buildUriMatcher method
+    private static UriMatcher uriMatcher = buildUriMatcher();
 
     WeatherDbHelper mOpenHelper;
 
-//  TODO (6) Write a method called buildUriMatcher where you match URI's to their numeric ID
+//  COMPLETED (6) Write a method called buildUriMatcher where you match URI's to their numeric ID
+    public static UriMatcher buildUriMatcher() {
+        final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
+        final String authority = WeatherContract.CONTENT_AUTHORITY;
+        final String path = WeatherContract.PATH_WEATHER;
 
-//  TODO (1) Implement onCreate
+        matcher.addURI(authority, path, CODE_WEATHER);
+        matcher.addURI(authority, path + "/#", CODE_WEATHER_WITH_DATE);
+
+        return matcher;
+    }
+
+//  COMPLETED (1) Implement onCreate
     @Override
     public boolean onCreate() {
-//      TODO (2) Within onCreate, instantiate our mOpenHelper
+//      COMPLETED (2) Within onCreate, instantiate our mOpenHelper
+        mOpenHelper = new WeatherDbHelper(getContext());
 
-//      TODO (3) Return true from onCreate to signify success performing setup
-        return false;
+//      COMPLETED (3) Return true from onCreate to signify success performing setup
+        return true;
     }
 
     /**
